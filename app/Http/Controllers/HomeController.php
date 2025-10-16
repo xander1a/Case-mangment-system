@@ -57,19 +57,8 @@ class HomeController extends Controller
 
     public function investigatorDashboard()
     {
-        $user = Auth::user();
-        $data['open_cases'] = CaseModel::where('investigator_id', $user->id)
-            ->where('status', 'open')
-            ->with('victim')
-            ->latest()
-            ->get();
-      $data['pending_testimonies'] = CaseModel::where('investigator_id', $user->id)
-    ->whereDoesntHave('testimonies') // plural here
-    ->with('victim')
-    ->latest()
-    ->get();
-
-
+        $data['cases'] = CaseModel::with('victim')->latest()->get();
+        $data['victims'] = Victim::count();
         return view('home', $data);
     }
 

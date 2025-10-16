@@ -22,7 +22,7 @@ public function index()
 {
     $user = Auth::user();
 
-    if ($user->role === 'admin') {
+    if ($user->role === 'investigator' || $user->role === 'admin') {
         // Admin sees all cases
         $cases = Casse::with(['victim', 'solverUser'])
             ->latest()

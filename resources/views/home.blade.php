@@ -28,7 +28,7 @@
         </div>
 
         <!-- Admin Dashboard -->
-        @if (Auth::user()->role === 'admin')
+        @if (Auth::user()->role === 'admin' || Auth::user()->role === 'investigator')
             <div class="space-y-8">
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">

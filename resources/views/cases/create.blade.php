@@ -83,6 +83,7 @@
                 <th class="border p-2">Solver</th>
                 <th class="border p-2">Status</th>
                 <th class="border p-2">Opened At</th>
+                <th class="border p-2">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -93,6 +94,9 @@
                     <td class="border p-2">{{ $case->solver ? \App\Models\User::find($case->solver)->name : 'N/A' }}</td>
                     <td class="border p-2">{{ ucfirst(str_replace('_',' ',$case->status)) }}</td>
                     <td class="border p-2">{{ $case->opened_at }}</td>
+                    <td class="border p-2">
+                        <a href="{{ route('cases.show', $case->id) }}" class="text-blue-600 hover:underline">View</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

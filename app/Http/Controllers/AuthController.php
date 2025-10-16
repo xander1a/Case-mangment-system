@@ -49,8 +49,11 @@ class AuthController extends Controller
         ]);
 
 
-        // dd( $credentials);
+        
         if (Auth::attempt($credentials)) {
+
+// dd( auth()->user()->role );
+
 
          if(auth()->user()->role == 'admin') {
             $request->session()->regenerate();
@@ -80,6 +83,11 @@ class AuthController extends Controller
             }
     
             if(auth()->user()->role == 'gbv_officer') {
+                $request->session()->regenerate();
+                return redirect('dashboard');
+            }
+
+            if(auth()->user()->role == 'investigator') {
                 $request->session()->regenerate();
                 return redirect('dashboard');
             }

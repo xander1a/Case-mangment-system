@@ -38,7 +38,7 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-1">
                     @auth
-                        @if (auth()->user()->role === 'admin')
+                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'investigator')
                             <a href="{{ route('home') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-3m0 0l7-4 7 4M5 9v7a1 1 0 001 1h12a1 1 0 001-1V9m-9 4v4m4-4v4m4-11l2.5-1.5"/>
@@ -47,7 +47,7 @@
                             </a>
                         @endif
 
-                        @if (auth()->user()->role === 'admin')
+                        @if (auth()->user()->role === 'admin' && !auth()->user()->is_active)
                             <a href="{{ route('users.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 8.048M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/>
@@ -56,7 +56,7 @@
                             </a>
                         @endif
 
-                        @if (auth()->user()->role === 'admin')
+                        @if (auth()->user()->role === 'admin' && auth()->user()->is_active && auth()->user()->role === 'inestigator')
                             <a href="{{ route('victims.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -74,16 +74,8 @@
                             </a>
                         @endif
 
-                        @if (auth()->user()->role === 'investigator')
-                            <a href="{{ route('testimonies.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                                </svg>
-                                Testimonies
-                            </a>
-                        @endif
 
-                        @if (in_array(auth()->user()->role, ['doctor', 'admin']))
+                        @if (in_array(auth()->user()->role, ['doctor', 'admin','investigator']))
                             <a href="{{ route('medical-treatments.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -92,7 +84,7 @@
                             </a>
                         @endif
 
-                        @if (in_array(auth()->user()->role, ['counselor', 'admin']))
+                        @if (in_array(auth()->user()->role, ['counselor', 'admin','investigator']))
                             <a href="{{ route('psychological-supports.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5a4 4 0 100-8 4 4 0 000 8z"/>
@@ -101,7 +93,7 @@
                             </a>
                         @endif
 
-                        @if (in_array(auth()->user()->role, ['legal_officer', 'admin']))
+                        @if (in_array(auth()->user()->role, ['legal_officer', 'admin','investigator']))
                             <a href="{{ route('legal-advices.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17s4.5 10.747 10 10.747c5.5 0 10-4.998 10-10.747S17.5 6.253 12 6.253z"/>
@@ -110,7 +102,7 @@
                             </a>
                         @endif
 
-                        @if (in_array(auth()->user()->role, ['gbv_officer', 'admin']))
+                        @if (in_array(auth()->user()->role, ['gbv_officer', 'admin','investigator']))
                             <a href="{{ route('gbv-supports.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -119,7 +111,7 @@
                             </a>
                         @endif
 
-                        @if (in_array(auth()->user()->role, ['social_worker', 'admin']))
+                        @if (in_array(auth()->user()->role, ['social_worker', 'admin','investigator']))
                             <a href="{{ route('social-supports.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 8.048M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/>
@@ -215,14 +207,7 @@
                         </a>
                     @endif
                     
-                    @if (auth()->user()->role === 'investigator')
-                        <a href="{{ route('testimonies.index') }}" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition rounded-lg">
-                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                            </svg>
-                            Testimonies
-                        </a>
-                    @endif
+                   
                     
                     @if (in_array(auth()->user()->role, ['doctor', 'admin']))
                         <a href="{{ route('medical-treatments.index') }}" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition rounded-lg">

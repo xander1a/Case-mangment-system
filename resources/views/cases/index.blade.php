@@ -14,7 +14,7 @@
                             <h1 class="text-3xl font-bold text-slate-900">Cases Management</h1>
                             <p class="mt-2 text-slate-600">Track and manage all investigation cases</p>
                         </div>
-                        @if (auth()->user()->role === 'admin' || auth()->user()->role === 'investigator')
+                        @if ( auth()->user()->role === 'investigator')
                             <!-- Enhanced button styling -->
                             <div class="mt-4 sm:mt-0">
                                 <a href="{{ route('cases.create') }}"
