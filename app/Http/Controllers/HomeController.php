@@ -68,7 +68,7 @@ class HomeController extends Controller
             ->with('victim')
             ->latest()
             ->get();
-        return view('home', $data);
+     return redirect()->intended('medical-treatments');
     }
 
     public function counselorDashboard()
@@ -77,7 +77,7 @@ class HomeController extends Controller
             ->with('victim')
             ->latest()
             ->get();
-        return view('home', $data);
+        return redirect()->intended('psychological-supports');
     }
 
     public function legalOfficerDashboard()
@@ -86,7 +86,7 @@ class HomeController extends Controller
             ->with('victim')
             ->latest()
             ->get();
-        return view('home', $data);
+        return redirect()->intended('legal-advices');
     }
 
     public function gbvOfficerDashboard()
@@ -96,7 +96,7 @@ class HomeController extends Controller
             ->with('victim')
             ->latest()
             ->get();
-        return view('home', $data);
+        return redirect()->intended('gbv-supports');
     }
 
     public function socialWorkerDashboard()
@@ -105,6 +105,6 @@ class HomeController extends Controller
             ->with('victim')
             ->latest()
             ->get();
-        return view('home', $data);
+        return redirect()->intended('social-supports');
     }
 }

@@ -117,8 +117,7 @@
                                                 </svg>
                                                 View
                                             </a>
-                                            @if (auth()->user()->role === 'admin' ||
-                                                    (auth()->user()->role === 'investigator' && $case->investigator_id === auth()->id()))
+                                            @if ((auth()->user()->role === 'investigator'))
                                                 <a href="{{ route('cases.edit', $case->id) }}"
                                                     class="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-700 hover:bg-amber-200 transition-colors duration-150">
                                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"

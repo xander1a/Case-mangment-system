@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Violence Case Management')</title>
+    <title>@yield('title', 'Isange One Stop ')</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <style>
@@ -56,7 +56,7 @@
                             </a>
                         @endif
 
-                        @if (auth()->user()->role === 'admin' && auth()->user()->is_active && auth()->user()->role === 'inestigator')
+                        @if (auth()->user()->role === 'investigator')
                             <a href="{{ route('victims.index') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -171,7 +171,7 @@
             
             <div class="py-2 px-2 space-y-1 max-h-screen overflow-y-auto">
                 @auth
-                    @if (auth()->user()->role === 'admin')
+                    @if (auth()->user()->role === 'admin' || auth()->user()->role === 'investigator')
                         <a href="{{ route('home') }}" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition rounded-lg">
                             <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-3m0 0l7-4 7 4M5 9v7a1 1 0 001 1h12a1 1 0 001-1V9m-9 4v4m4-4v4m4-11l2.5-1.5"/>
@@ -189,7 +189,7 @@
                         </a>
                     @endif
                     
-                    @if (auth()->user()->role === 'admin')
+                    @if (auth()->user()->role === 'admin' || auth()->user()->role === 'investigator')
                         <a href="{{ route('victims.index') }}" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition rounded-lg">
                             <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
